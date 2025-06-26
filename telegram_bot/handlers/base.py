@@ -3,7 +3,7 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 class BaseHandler:
     BACK_BUTTON_CALLBACK = "back_to_start"
     
-    def __init__(self, db, scheduler=None):  # Добавляем scheduler как необязательный параметр
+    def __init__(self, db, scheduler=None):  
         self.db = db
         self.scheduler = scheduler
     
