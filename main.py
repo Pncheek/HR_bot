@@ -178,14 +178,14 @@ async def send_meeting_reminder(context: ContextTypes.DEFAULT_TYPE):
 def main() -> None:
     application = Application.builder().token(TOKEN).build()
     
-    # Обработчики команд
+
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("review", handle_review))
     
-    # Обработчик inline-кнопок
+
     application.add_handler(CallbackQueryHandler(button_handler))
     
-    # ConversationHandler для отзывов
+
     review_handler = ConversationHandler(
         entry_points=[CommandHandler("review", handle_review)],
         states={
@@ -195,7 +195,7 @@ def main() -> None:
     )
     application.add_handler(review_handler)
     
-    # ConversationHandler для напоминаний
+
     meeting_handler = ConversationHandler(
         entry_points=[MessageHandler(filters.Regex("^Напомнить о встрече$"), set_meeting_reminder)],
         states={
