@@ -9,12 +9,11 @@ class SurveyHandler(BaseHandler):
         self.scheduler = scheduler
     
     async def handle_survey_response(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-        """Обрабатывает ответ пользователя на опрос"""
         user = update.effective_user
         response_text = update.message.text
         survey_type = context.user_data.get('survey_type', 'unknown')
         
-        # Сохраняем ответ в базу данных
+       
         self.db.add_survey_response(
             user.id,
             user.username,
