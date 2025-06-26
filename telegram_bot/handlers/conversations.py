@@ -9,7 +9,6 @@ from telegram.ext import (
 )
 from .base import BaseHandler
 
-# Состояния для диалога отзыва
 REVIEW = 1
 
 class ReviewConversationHandler(BaseHandler):
@@ -39,7 +38,6 @@ class ReviewConversationHandler(BaseHandler):
         return ConversationHandler.END
 
 
-# Состояния для диалога напоминания
 NOTIFICATION_DATE, NOTIFICATION_TEXT = range(2)
 
 class NotificationConversationHandler(BaseHandler):
