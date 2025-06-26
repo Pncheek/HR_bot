@@ -2,7 +2,6 @@ import sqlite3
 from datetime import datetime
 
 def init_db():
-    """Инициализация базы данных"""
     conn = sqlite3.connect('hr_bot.db')
     cursor = conn.cursor()
     
@@ -20,7 +19,6 @@ def init_db():
     conn.close()
 
 def save_review(user_id: int, username: str, review_text: str):
-    """Сохраняет отзыв в базу данных"""
     conn = sqlite3.connect('hr_bot.db')
     cursor = conn.cursor()
     
@@ -36,5 +34,5 @@ def save_review(user_id: int, username: str, review_text: str):
     finally:
         conn.close()
 
-# Инициализируем БД при импорте
+
 init_db()
