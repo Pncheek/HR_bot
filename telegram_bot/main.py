@@ -1,5 +1,5 @@
 import logging
-from telegram.ext import Application, CommandHandler, MessageHandler, filters, ConversationHandler, CallbackQueryHandler
+from telegram.ext import Application, CommandHandler, MessageHandler, filters, ConversationHandler, CallbackQueryHandler, JobQueue
 from config import Config
 from database import Database
 from handlers.commands import CommandHandler as CustomCommandHandler
@@ -16,7 +16,12 @@ def main() -> None:
     db = Database()
     config = Config()
     
-    application = Application.builder().token(config.TOKEN).build()
+    application = (
+        Application.builder()
+        .token(config.TOKEN)
+        .job_queue(JobQueue())
+        .build()
+    )
     
     survey_scheduler = SurveyScheduler(db)
     
