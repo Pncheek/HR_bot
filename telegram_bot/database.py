@@ -28,6 +28,24 @@ class Database:
         self.conn = sqlite3.connect(db_name)
         self.create_tables()
 
+    def get_all_feedbacks(self):
+        cursor = self.conn.cursor()
+        cursor.execute('''
+        SELECT username, review_text as text, date 
+        FROM reviews 
+        ORDER BY date DESC
+        ''')
+        return [dict(row) for row in cursor.fetchall()]
+
+    def get_all_survey_responses(self):
+        cursor = self.conn.cursor()
+        cursor.execute('''
+        SELECT username, survey_type, response_text as response, date 
+        FROM survey_responses 
+        ORDER BY date DESC
+        ''')
+        return [dict(row) for row in cursor.fetchall()]
+
     def create_tables(self):
         cursor = self.conn.cursor()
 
