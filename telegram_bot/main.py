@@ -4,6 +4,7 @@ from config import Config
 from database import Database
 from handlers.commands import CommandHandler as CustomCommandHandler
 from handlers.conversations import ReviewConversationHandler, NotificationConversationHandler
+from handlers.admin import AdminHandler
 from services.scheduler import SurveyScheduler
 from alembic.config import Config
 from alembic import command
@@ -40,6 +41,9 @@ def main() -> None:
     application.add_handler(review_handler.get_conversation_handler())
     application.add_handler(notification_handler.get_conversation_handler())
     application.add_handler(CallbackQueryHandler(command_handler.button_handler))
+    admin_handler = AdminHandler(db)
+    for handler in admin_handler.get_admin_handlers():
+        application.add_handler(handler)
     
     application.run_polling()
 
