@@ -58,6 +58,7 @@ class Database:
             review_date TEXT
         )
         ''')
+        self.conn.commit()
 
         cursor.execute('''
         CREATE TABLE IF NOT EXISTS notifications (
@@ -69,6 +70,7 @@ class Database:
             chat_id INTEGER
         )
         ''')
+        self.conn.commit()
 
         cursor.execute('''
         CREATE TABLE IF NOT EXISTS survey_answers (
@@ -80,6 +82,7 @@ class Database:
             answer_date TEXT
         )
         ''')
+        self.conn.commit()
 
         cursor.execute('''
         CREATE TABLE IF NOT EXISTS user_timers (
